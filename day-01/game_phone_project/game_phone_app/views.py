@@ -34,11 +34,14 @@ all_games = [
 ]
 
 def game_by_id(request, game_id):
+    try:
+        game = all_games[game_id]
 
-    game = all_games[game_id]
+        context = {
+            "game": game
+        }
 
-    context = {
-        "game": game
-    }
+        return render(request, "game_phone_app/game_by_id.html", context)
 
-    return render(request, "game_phone_app/game_by_id.html", context)
+    except IndexError:
+        return render(request, "game_phone_app/404.html")
