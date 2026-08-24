@@ -17,3 +17,28 @@ def about(request):
     }
 
     return render(request, "game_phone_app/about.html", context)
+
+def power_of(request, number_one, number_two):
+    result = number_one ** number_two
+    context = {
+        "result": result,
+        "number_one": number_one,
+        "number_two": number_two,
+    }
+    return render(request, "game_phone_app/power_of.html", context)
+
+all_games = [
+    { "name": "Chess", "download_size": "2MB" },
+    { "name": "Roblox", "download_size": "2GB" },
+    { "name": "Candy Crush", "download_size": "6MB" }
+]
+
+def game_by_id(request, game_id):
+
+    game = all_games[game_id]
+
+    context = {
+        "game": game
+    }
+
+    return render(request, "game_phone_app/game_by_id.html", context)
