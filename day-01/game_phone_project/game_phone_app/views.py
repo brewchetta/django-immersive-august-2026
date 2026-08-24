@@ -28,9 +28,9 @@ def power_of(request, number_one, number_two):
     return render(request, "game_phone_app/power_of.html", context)
 
 all_games = [
-    { "name": "Chess", "download_size": "2MB" },
-    { "name": "Roblox", "download_size": "2GB" },
-    { "name": "Candy Crush", "download_size": "6MB" }
+    { "name": "Chess", "download_size": "2MB", "id": 0 },
+    { "name": "Roblox", "download_size": "2GB", "id": 1 },
+    { "name": "Candy Crush", "download_size": "6MB", "id": 2 }
 ]
 
 def game_by_id(request, game_id):
@@ -45,3 +45,9 @@ def game_by_id(request, game_id):
 
     except IndexError:
         return render(request, "game_phone_app/404.html")
+
+def games(request):
+    context = {
+        "games": all_games
+    }
+    return render(request, "game_phone_app/games.html", context)
