@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- LOAD STATIC FILES -->
+    {% load static %}
+    <!-- LINK TO STATIC CSS FILE -->
+    <link rel="stylesheet" href="{% static 'app/main.css' %}">
+
+</head>
+<body>
+
+    <h1>Welcome to Memes Website</h1>
+
+    <!-- MAKE SURE STATIC FILES ARE LOADED -->
+    {% load static %}
+    <!-- REFER TO STATIC FILES IN IMG TAGS -->
+    <img src="{% static 'app/zomboy.gif' %}" alt="hello zombie">
+    <img src="{% static 'app/import-react.png' %}" alt="bring back import">
+    <img src="{% static 'app/kimmel.gif' %}" alt="stop it... that's enough">
+
+    {% for video_id in youtube_embeds %}
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video_id }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    {% endfor %}
+    
+</body>
+</html>
