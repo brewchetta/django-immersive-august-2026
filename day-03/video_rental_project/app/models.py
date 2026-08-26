@@ -83,3 +83,21 @@ class Student(models.Model):
     # teachers have many students
     # students have many teachers
     teachers = models.ManyToManyField(Teacher, blank=True, related_name="students")
+
+
+# Library
+# - name
+
+# Librarian
+# - name
+# - salary
+# - date_hired
+# - how do you associate it with a library???
+
+# Customer
+# - name
+# - favorite_libraries --> how do you create a many to many???
+
+# DONT FORGET TO MAKE MIGRATIONS / MIGRATE
+
+# TEST YOUR WORK IN THE ADMIN PANEL
