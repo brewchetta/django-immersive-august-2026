@@ -5,8 +5,12 @@ urlpatterns = [
     # READ
     path('', views.home, name="home"),
     path('movies/<int:pk>', views.movie_detail, name="movie_detail"),
+
     # CREATE
     path('movies/create', views.movie_create, name="movie_create"),
+
+    # EDIT
+    path('movies/<int:pk>/edit', views.movie_edit, name="movie_edit"),
 
     # DELETE
     path('movies/<int:pk>/delete', views.movie_delete, name="movie_delete"),

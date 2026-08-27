@@ -58,7 +58,28 @@ def movie_create(request):
     context = { "form": MovieForm() }
     return render(request, 'app/movie_create.html', context)
 
-# DELETE
+
+# EDIT #
+def movie_edit(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+
+    # if POST they have submitted the form
+    if (request.method == "POST"):
+        form = MovieForm(request.POST, instance=movie)
+        if form.is_valid():
+            form.save()
+            return redirect('movie_detail', pk=pk)
+        context = { "form": form }
+        return render(request, 'app/movie_edit.html', context)
+
+
+    # instance=movie ensures that the form is pre-filled with the movie's data
+    form = MovieForm(instance=movie)
+    context = { "form": form }
+    return render(request, 'app/movie_edit.html', context)
+
+
+# DELETE #
 def movie_delete(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
 
