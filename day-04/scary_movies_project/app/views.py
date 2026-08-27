@@ -59,3 +59,16 @@ def movie_create(request):
     return render(request, 'app/movie_create.html', context)
 
 # DELETE
+def movie_delete(request, pk):
+    movie = get_object_or_404(Movie, pk=pk)
+
+    # if confirmation form submitted
+    if (request.method == "POST"):
+        # delete movie
+        movie.delete()
+        # go back to home
+        return redirect('home')
+
+    context = { "movie": movie }
+    # if get request
+    return render(request, 'app/movie_delete.html', context)
