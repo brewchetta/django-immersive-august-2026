@@ -19,5 +19,8 @@ from django.urls import path, include # import include too
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('app.urls')), # add path to link to app/urls.py
+    # add path to link to app/urls.py
+    path('', include('app.urls')), 
+    # under the /forum routes we go to the forum app urls
+    path('forum/', include('forum_app.urls')), 
 ]
