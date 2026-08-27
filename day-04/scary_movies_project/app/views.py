@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Movie
 
+# READ #
+
 def home(request):
     # WITH QUERY PARAMS ##########
     # see if title is in the query params
@@ -30,3 +32,8 @@ def movie_detail(request, pk):
 
     context = { "movie": movie }
     return render(request, 'app/movie_detail.html', context)
+
+# CREATE #
+
+def movie_create(request):
+    pass
