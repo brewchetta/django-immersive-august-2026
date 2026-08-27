@@ -6,7 +6,9 @@
 <!-- loop over the movies -->
 {% for movie in all_movies %}
 
-    <h2>{{ movie.title }}</h2>
+    <a href="{% url 'movie_detail' pk=movie.pk %}">
+        <h2>{{ movie.title }}</h2>
+    </a>
 
 {% endfor %}
 <!-- end loop -->

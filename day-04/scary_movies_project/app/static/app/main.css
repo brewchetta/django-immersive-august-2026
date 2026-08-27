@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+a, a:visited {
+    color: white;
+}
+
+img {
+    max-width: 400px;
+}
