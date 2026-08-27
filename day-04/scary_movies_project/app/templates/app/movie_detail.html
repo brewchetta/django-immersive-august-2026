@@ -1,0 +1,9 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>{{ movie.title }}</h2>
+
+<img src="{{ movie.poster_url }}" alt="{{ movie.title }}">
+
+{% endblock %}

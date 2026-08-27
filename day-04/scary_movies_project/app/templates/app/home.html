@@ -3,4 +3,12 @@
 
 <h1>Welcome to the Horror Movie Repo</h1>
 
+<!-- loop over the movies -->
+{% for movie in all_movies %}
+
+    <h2>{{ movie.title }}</h2>
+
+{% endfor %}
+<!-- end loop -->
+
 {% endblock %}
