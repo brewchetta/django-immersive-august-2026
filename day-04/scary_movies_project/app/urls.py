@@ -6,7 +6,10 @@ urlpatterns = [
     path('', views.home, name="home"),
     path('movies/<int:pk>', views.movie_detail, name="movie_detail"),
     # CREATE
-    path('movies/create', views.movie_create, name="movie_create")
+    path('movies/create', views.movie_create, name="movie_create"),
+
+    # DELETE
+    path('movies/<int:pk>/delete', views.movie_delete, name="movie_delete"),
 ]
 
 # RESTful ROUTING

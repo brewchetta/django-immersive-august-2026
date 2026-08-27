@@ -39,23 +39,23 @@ def movie_detail(request, pk):
 # CREATE #
 
 def movie_create(request):
-    # someone has gone to the page and wants to see the form
-    if request.method == "GET":
-        context = { "form": MovieForm() }
-        return render(request, 'app/movie_create.html', context)
-
     # submitted the form so let's process the form inputs
     if request.method == "POST":
         # request.POST is the body of material that got submitted
         form = MovieForm(request.POST)
         # check that the data is good
         if form.is_valid():
-            # cleaned_data is the validated data in the form
-            title = form.cleaned_data['title']
-            poster_url = form.cleaned_data['poster_url']
-            # create a new movie instance with the inputs
-            new_movie = Movie(title=title, poster_url=poster_url)
             # save to db
-            new_movie.save()
+            form.save()
             # send to home page
             return redirect('home')
+        # form knows why the inputs are invalid and will show us when we rerender the page
+        context = { 'form': form }
+        # rerender the page which shows the form errors
+        return render(request, 'app/movie_create.html', context)
+
+    # for get request just show the form to the user
+    context = { "form": MovieForm() }
+    return render(request, 'app/movie_create.html', context)
+
+# DELETE
