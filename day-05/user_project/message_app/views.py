@@ -60,7 +60,6 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def message_create(request):
     if (request.method == "POST"):
-        request.POST
         form = MessageForm(request.POST)
         # attach the user to the form as the sender
         form.instance.sender = request.user

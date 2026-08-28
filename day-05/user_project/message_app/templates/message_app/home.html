@@ -4,4 +4,36 @@
 
 <h1>Welcome Home Messager</h1>
 
+{% if user.is_authenticated %}
+
+    <h2>Received Messages</h2>
+
+    <div>
+        {% for message in user.received_messages.all %}
+
+        <div>
+            <p>{{ message.content }}</p>
+            <p>Sent by: {{ message.sender.username }}</p>
+            <p>{{ message.created_at }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <h2>Sent Messages</h2>
+
+    <div>
+        {% for message in user.sent_messages.all %}
+
+        <div>
+            <p>{{ message.content }}</p>
+            <p>Sent to: {{ message.recipient.username }}</p>
+            <p>{{ message.created_at }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+{% endif %}
+
 {% endblock %}
