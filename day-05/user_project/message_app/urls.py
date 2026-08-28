@@ -6,6 +6,8 @@ urlpatterns = [
 
     path('messages/create', views.message_create, name="message_create"),
 
+    path('messages/<int:pk>/delete', views.message_delete, name="message_delete"),
+
     # AUTH ROUTES
     path('signup', views.auth_signup, name="auth_signup"),
 

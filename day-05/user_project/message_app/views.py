@@ -72,3 +72,32 @@ def message_create(request):
     form = MessageForm()
     context = { "form": form }
     return render(request, 'message_app/message_create.html', context)
+
+
+from django.shortcuts import get_object_or_404
+from .models import Message
+from django.http import Http404
+
+# helper to make sure user is the same as the message sender
+def match_user_or_404(request, message):
+    if (request.user != message.sender):
+            # go to 404 page if user != sender
+            raise Http404
+
+# must be logged in to even see this page
+@login_required
+def message_delete(request, pk):
+    # get message as usual
+    message = get_object_or_404(Message, pk=pk)
+
+    # use helper to check this is a valid user/sender
+    match_user_or_404(request, message)
+
+    # normal delete stuff
+    if (request.method == "POST"):
+        message.delete()
+        return redirect('home')
+
+    # normal show confirmation page stuff
+    context = { "message": message }
+    return render(request, 'message_app/message_delete.html', context)

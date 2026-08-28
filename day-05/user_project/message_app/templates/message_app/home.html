@@ -29,6 +29,7 @@
             <p>{{ message.content }}</p>
             <p>Sent to: {{ message.recipient.username }}</p>
             <p>{{ message.created_at }}</p>
+            <a href="{% url 'message_delete' pk=message.pk %}">Delete</a>
         </div>
 
         {% endfor %}
