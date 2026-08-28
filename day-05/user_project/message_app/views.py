@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 def home(request):
     return render(request, 'message_app/home.html')
 
+
 # AUTH VIEWS
 
 def auth_signup(request):
@@ -48,3 +49,27 @@ def auth_login(request):
 def auth_logout(request):
     logout(request)
     return redirect('home')
+
+
+# MESSAGE VIEWS
+
+from .forms import MessageForm
+from django.contrib.auth.decorators import login_required
+
+# @login_required forces the route to be blocked if someone isn't logged in
+@login_required
+def message_create(request):
+    if (request.method == "POST"):
+        request.POST
+        form = MessageForm(request.POST)
+        # attach the user to the form as the sender
+        form.instance.sender = request.user
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        context = { "form": form }
+        return render(request, 'message_app/message_create.html', context)
+
+    form = MessageForm()
+    context = { "form": form }
+    return render(request, 'message_app/message_create.html', context)

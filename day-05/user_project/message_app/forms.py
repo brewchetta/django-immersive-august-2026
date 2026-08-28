@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 from django import forms
+from .models import Message
 
 # imports the user model for us using a special, safe function
 User = get_user_model()
@@ -17,3 +18,10 @@ class LoginForm(forms.Form):
     username = forms.CharField(max_length=100)
     # transform into password input
     password = forms.CharField(widget=forms.PasswordInput)
+
+
+# MESSAGE FORM
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['content', 'recipient']

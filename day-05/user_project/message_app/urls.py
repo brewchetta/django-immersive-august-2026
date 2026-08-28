@@ -4,6 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name="home"),
 
+    path('messages/create', views.message_create, name="message_create"),
+
     # AUTH ROUTES
     path('signup', views.auth_signup, name="auth_signup"),
 
