@@ -5,11 +5,11 @@ urlpatterns = [
     path('', views.home, name="home"),
 
     # AUTH ROUTES
-    path('signup', views.signup, name="signup"),
+    path('signup', views.auth_signup, name="auth_signup"),
 
-    path('login', views.login, name="login"),
+    path('login', views.auth_login, name="auth_login"),
 
-    path('logout', views.logout, name="logout")
+    path('logout', views.auth_logout, name="auth_logout")
 ]
 
 # AUTH PAGES
