@@ -1,5 +1,9 @@
 # Day Six
 
+## Review
+
+- Understanding how paths are resolved in the URL
+
 ## Topics
 
 - Mini Project
