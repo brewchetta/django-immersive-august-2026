@@ -1,0 +1,18 @@
+{% extends 'message_app/base.html' %}
+
+{% block content %}
+
+<h2>Are you sure you want delete this message?</h2>
+
+<p>{{ message.content }}</p>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+
+<a href="{% url 'home' %}">
+    <button>Cancel</button>
+</a>
+
+{% endblock %}

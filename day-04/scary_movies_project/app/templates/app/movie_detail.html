@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<h2>{{ movie.title }}</h2>
+
+<div>
+    <a href="{% url 'movie_edit' pk=movie.pk %}">Edit</a>
+    <a href="{% url 'movie_delete' pk=movie.pk %}">Delete</a>
+</div>
+
+<img src="{{ movie.poster_url }}" alt="{{ movie.title }}">
+
+{% endblock %}

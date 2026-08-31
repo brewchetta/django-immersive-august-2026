@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Messages</title>
+
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- this syntax checks to see if a user is logged -->
+    {% if user.is_authenticated %}
+        <!-- if logged in - show logout -->
+        <p>Welcome {{ user.username }}!</p>
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'message_create' %}">Create Message</a>
+            <a href="{% url 'auth_logout' %}">Logout</a>
+        </nav>
+    {% else %}
+        <!-- if logged out allow for login/signup -->
+        <nav>
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'auth_login' %}">Login</a>
+            <a href="{% url 'auth_signup' %}">Sign Up</a>
+        </nav>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+    
+</body>
+</html>

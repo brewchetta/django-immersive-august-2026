@@ -1,0 +1,42 @@
+{% extends 'message_app/base.html' %}
+
+{% block content %}
+
+<h1>Welcome Home Messager</h1>
+
+{% if user.is_authenticated %}
+
+    <h2>Received Messages</h2>
+
+    <div>
+        {% for message in user.received_messages.all %}
+
+        <div>
+            <p>{{ message.content }}</p>
+            <p>Sent by: {{ message.sender.username }}</p>
+            <img src="{{ message.sender.profile.profile_img }}" alt="{{ message.sender.username }}">
+            <p>{{ message.created_at }}</p>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    <h2>Sent Messages</h2>
+
+    <div>
+        {% for message in user.sent_messages.all %}
+
+        <div>
+            <p>{{ message.content }}</p>
+            <p>Sent to: {{ message.recipient.username }}</p>
+            <img src="{{ message.recipient.profile.profile_img }}" alt="{{ message.recipient.username }}">
+            <p>{{ message.created_at }}</p>
+            <a href="{% url 'message_delete' pk=message.pk %}">Delete</a>
+        </div>
+
+        {% endfor %}
+    </div>
+
+{% endif %}
+
+{% endblock %}
