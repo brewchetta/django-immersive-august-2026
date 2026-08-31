@@ -2,6 +2,20 @@
 
 {% block content %}
 
+
 <h1>Welcome Home</h1>
+
+{% if user.is_authenticated %}
+
+    <h2>Your Reviews</h2>
+
+    {% for review in user.reviews.all %}
+
+        <p>{{ review.pk }}. {{ review.content }}</p>
+
+    {% endfor %}
+
+{% endif %}
+
 
 {% endblock %}

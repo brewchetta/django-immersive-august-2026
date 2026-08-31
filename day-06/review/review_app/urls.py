@@ -8,6 +8,8 @@ from . import views
 urlpatterns = [
     path('', views.home, name="home"),
     path('about', views.about, name="about_page"),
+    path('reviews/create', views.create_review, name="create_review"),
+    path('register', views.auth_registration, name="auth_registration")
 ]
 
 # each url pattern is a route/path/url which activates a specific view

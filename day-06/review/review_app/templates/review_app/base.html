@@ -7,6 +7,16 @@
 </head>
 <body>
 
+    <nav>
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'about_page' %}">About</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'create_review' %}">New Review</a>
+        {% else %}
+            <a href="{% url 'auth_registration' %}">Register</a>
+        {% endif %}
+    </nav>
+
     {% block content %}
     {% endblock %}
     
