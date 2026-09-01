@@ -9,6 +9,10 @@ urlpatterns = [
 
     # whenever you have a class view you must activate it in the path with .as_view()
     path('about', views.AboutPage.as_view(), name="about"),
+
     # generic view for a form
-    path('gaming/create', views.GamingPCCreateView.as_view(), name="gaming_pc_create")
+    path('gaming/create', views.GamingPCCreateView.as_view(), name="gaming_pc_create"),
+
+    # using the generic form
+    path('headphones/create', views.HeadphoneCreateView.as_view(), name="headphone_create")
 ]
