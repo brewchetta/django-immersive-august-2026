@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% for meme in all_memes %}
+
+    <div>
+        <p>{{meme.description}}</p>
+        <img src="{{ meme.image.url }}" alt="I am alt text">
+    </div>
+
+{% endfor %}
+
+{% endblock %}

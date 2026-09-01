@@ -104,6 +104,13 @@ class MemesCreate(View):
         form = MemeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('meme_list')
         context = { "form": form }
         return render(request, 'app/memes_create.html', context)
+
+
+from .models import Meme
+
+class MemeList(ListView):
+    model = Meme
+    context_object_name = "all_memes"
