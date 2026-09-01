@@ -14,5 +14,11 @@ urlpatterns = [
     path('gaming/create', views.GamingPCCreateView.as_view(), name="gaming_pc_create"),
 
     # using the generic form
-    path('headphones/create', views.HeadphoneCreateView.as_view(), name="headphone_create")
+    path('headphones/create', views.HeadphoneCreateView.as_view(), name="headphone_create"),
+
+    # using ListView
+    path('headphones', views.HeadphoneList.as_view(), name="headphone_list"),
+
+    # using DetailView
+    path('headphones/<int:pk>', views.HeadphoneDetail.as_view(), name="headphone_detail")
 ]

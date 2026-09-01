@@ -67,3 +67,25 @@ class HeadphoneCreateView(FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
+
+
+def headphones_list(request):
+    all_headphones = Headphone.object.all()
+    context = { "all_headphones": all_headphones }
+    return render(request, 'app/headphones_list.html', context)
+
+
+from django.views.generic import ListView
+from .models import Headphone
+
+class HeadphoneList(ListView):
+    model = Headphone
+    context_object_name = "all_headphones"
+    # queryset = Headphone.objects.filter(brand__icontains="air")
+
+
+from django.views.generic import DetailView
+
+class HeadphoneDetail(DetailView):
+    model = Headphone
+    context_object_name = "headphone"

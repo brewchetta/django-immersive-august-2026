@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+{% for headphone in all_headphones %}
+
+    <h3>{{ headphone.brand }}</h3>
+    <p>{{ headphone.price }}</p>
+
+{% endfor %}
+
+{% endblock %}
