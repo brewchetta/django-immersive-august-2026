@@ -291,3 +291,9 @@ This view both renders the initial `ClientForm`, handles re-rendering if there a
 There are many more class-based views than what has been shown above. While powerful, a class-based view isn't inherently configurable and rely on certain conventions that might be challenging to remember compared to using functional views. It's ultimately up to the dev to determine whether to use functional or class-based views.
 
 ## Exercises
+
+Create a new model of your choice along with a matching `ModelForm`. For that model create three class based views:
+
+- A view that allows you to create the model instance with a `FormView`
+- A view that allows you to see all the model instances with a `ListView`
+- A view that allows you to see a single model instance with a `DetailView`
