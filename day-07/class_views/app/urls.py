@@ -20,5 +20,8 @@ urlpatterns = [
     path('headphones', views.HeadphoneList.as_view(), name="headphone_list"),
 
     # using DetailView
-    path('headphones/<int:pk>', views.HeadphoneDetail.as_view(), name="headphone_detail")
+    path('headphones/<int:pk>', views.HeadphoneDetail.as_view(), name="headphone_detail"),
+
+    # image upload example
+    path('memes/create', views.MemesCreate.as_view(), name="memes_create")
 ]

@@ -89,3 +89,21 @@ from django.views.generic import DetailView
 class HeadphoneDetail(DetailView):
     model = Headphone
     context_object_name = "headphone"
+
+
+from .forms import MemeForm
+
+class MemesCreate(View):
+
+    def get(self, request):
+        context = { "form": MemeForm() }
+        return render(request, 'app/memes_create.html', context)
+
+    def post(self, request):
+        # allow the form to accept file data
+        form = MemeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+        context = { "form": form }
+        return render(request, 'app/memes_create.html', context)

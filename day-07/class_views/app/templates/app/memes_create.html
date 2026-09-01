@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<!-- enctype multipart/form-data allows us to send files/images -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <input type="submit" value="Upload Meme">
+</form>
+
+{% endblock %}
