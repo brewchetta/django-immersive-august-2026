@@ -24,16 +24,24 @@ from django.views import View
 from .models import GamingPC
 from .forms import GamingPCForm
 
-class GamingPCCreateView(View):
+class GenericFormView(View):
+    template_name = None
+    form = None
 
     # get will fire on a 'GET' request
     def get(self, request):
-        return render(request, "app/gaming_pc_create.html", { "form": GamingPCForm() })
+        return render(request, self.template_name, { "form": self.form() })
 
     # post will fire on a 'POST' request
     def post(self, request):
-        form = GamingPCForm(request.POST)
+        form = self.form(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
-        return render(request, "app/gaming_pc_create.html", { "form": form })
+        return render(request, self.template_name, { "form": form })
+
+
+# this inherits from the generic form view
+class GamingPCCreateView(GenericFormView):
+    template_name = 'app/gaming_pc_create.html'
+    form = GamingPCForm
