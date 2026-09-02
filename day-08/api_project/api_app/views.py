@@ -131,10 +131,12 @@ class PhoneDetail(
 from .models import Channel
 from .serializers import ChannelSerializer
 
+# shortcut to build the list and create view
 class ChannelList(generics.ListCreateAPIView):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
 
+# shortcut to build the get, update, destroy view
 class ChannelDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Channel.objects.all()
     serializer_class = ChannelSerializer
