@@ -31,5 +31,37 @@ def sports_car_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def sports_car_detail():
-    pass
+@api_view( [ "GET", "PUT", "PATCH", "DELETE" ] )
+def sports_car_detail(request, pk):
+    # try to find sports car in db
+    try:
+        sports_car = SportsCar.objects.get(pk=pk)
+    # if does not exist send a 404
+    except SportsCar.DoesNotExist:
+        return Response({"error": "404 NOT FOUND"}, status=status.HTTP_404_NOT_FOUND)
+
+    # GET THE SPORTS CAR
+    if (request.method == "GET"):
+        # load sports car into serializer
+        serializer = SportsCarSerializer(sports_car)
+        # send serialized data
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # UPDATE THE SPORTS CAR
+    if (request.method == "PUT" or request.method == "PATCH"):
+        # serializer with the car and edit data
+        serializer = SportsCarSerializer(sports_car, data=request.data, partial=True)
+                        # partial=True means we aren't trying to edit the full object
+        if serializer.is_valid():
+            # if valid save and return
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+        # if invalid send errors
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # DELETE THE SPORTS CAR
+    if (request.method == "DELETE"):
+        # delete the car
+        sports_car.delete()
+        # return an empty response
+        return Response(status=status.HTTP_204_NO_CONTENT)
