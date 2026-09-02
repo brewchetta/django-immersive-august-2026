@@ -16,11 +16,19 @@ def sports_car_list(request):
         # serialize data into dictionary/json form, many=True means serialize all cars
         serializer = SportsCarSerializer(sports_cars, many=True)
         # send the cars back to the user who made the request
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
     # post a new sports car
     if request.method == "POST":
-        pass
+        # load serializer with the request data
+        serializer = SportsCarSerializer(data=request.data)
+        if serializer.is_valid():
+            # save to the db if valid
+            serializer.save()
+            # send back the new data if created
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # if invalid send back the validation errors
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def sports_car_detail():
