@@ -17,3 +17,13 @@ class TradingCard(models.Model):
     rarity = models.CharField(max_length=200)
     description = models.TextField()
     psa_grade = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+
+
+class Phone(models.Model):
+    make = models.CharField(max_length=200)
+    model = models.CharField(max_length=200)
+
+
+class Channel(models.Model):
+    name = models.CharField(max_length=200)
+    cable = models.BooleanField()

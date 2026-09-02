@@ -84,3 +84,57 @@ class TradingCardList(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+from rest_framework import mixins, generics
+from .models import Phone
+from .serializers import PhoneSerializer
+
+class PhoneList(
+    generics.GenericAPIView,    # GenericAPIView is the basic API view used with mixins
+    mixins.ListModelMixin,      # ListModelMixin allows us to see all the models in a get
+    mixins.CreateModelMixin     # CreateModelMixin has all the functionality for posting
+):
+    # queryset is what will be shown in the list
+    queryset = Phone.objects.all()
+    serializer_class = PhoneSerializer
+
+    def get(self, request):
+        return self.list(request)
+
+    def post(self, request):
+        return self.create(request)
+
+
+class PhoneDetail(
+    generics.GenericAPIView,
+    mixins.RetrieveModelMixin,   # to get a single phone
+    mixins.UpdateModelMixin,    # update a single phone
+    mixins.DestroyModelMixin    # delete a single phone
+):
+    queryset = Phone.objects.all()
+    serializer_class = PhoneSerializer
+
+    # *args are any additional arguments
+    # **kargs are additional keyword arguments (such as pk=5)
+    def get(self, request, *args, **kargs):
+        # we need to make sure we forward the *args and **kargs to the self.method
+        return self.retrieve(request, *args, **kargs)
+
+    def put(self, request, *args, **kargs):
+        return self.update(request, *args, **kargs)
+
+    def delete(self, request, *args, **kargs):
+        return self.destroy(request, *args, **kargs)
+
+
+from .models import Channel
+from .serializers import ChannelSerializer
+
+class ChannelList(generics.ListCreateAPIView):
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
+
+class ChannelDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Channel.objects.all()
+    serializer_class = ChannelSerializer
