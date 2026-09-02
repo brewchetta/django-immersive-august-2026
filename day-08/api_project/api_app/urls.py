@@ -3,7 +3,8 @@ from . import views
 
 urlpatterns = [
     path('sports_cars', views.sports_car_list),
-    path('sports_cars/<int:pk>', views.sports_car_detail)
+    path('sports_cars/<int:pk>', views.sports_car_detail),
+    path('trading_cards', views.TradingCardList.as_view()),
 ]
 
 # RESTFUL ROUTES

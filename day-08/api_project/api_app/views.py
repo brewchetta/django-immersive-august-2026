@@ -65,3 +65,22 @@ def sports_car_detail(request, pk):
         sports_car.delete()
         # return an empty response
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+from rest_framework.views import APIView
+from .models import TradingCard
+from .serializers import TradingCardSerializer
+
+class TradingCardList(APIView):
+
+    def get(self, request, format=None):
+        trading_cards = TradingCard.objects.all()
+        serializer = TradingCardSerializer(trading_cards, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = TradingCardSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

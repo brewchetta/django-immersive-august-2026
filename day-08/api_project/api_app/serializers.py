@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import SportsCar
+from .models import SportsCar, TradingCard
 
 class SportsCarSerializer(serializers.ModelSerializer):
     class Meta:
@@ -9,4 +9,9 @@ class SportsCarSerializer(serializers.ModelSerializer):
         # fields = ['make', 'model', 'horsepower', 'apple_car_play', 'google_play', 'base_price']
 
         # or we can add all fields using a shortcut
+        fields = '__all__'
+
+class TradingCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TradingCard
         fields = '__all__'
